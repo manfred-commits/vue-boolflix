@@ -1,6 +1,6 @@
 <template>
   <section class="film-container" >
-    <img src="" alt="">
+    <!-- <img :src="'https://image.tmdb.org/t/p/w500'+film.backdrop_path" :alt="film.title"> -->
     <h4>Titolo:{{film.title}}</h4>
     <h4>Titolo Originale:{{film.original_title}}</h4>
     <div>Lingua Originale:{{film.original_language}}</div>
