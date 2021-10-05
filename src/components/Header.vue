@@ -4,8 +4,8 @@
           <img src="" alt="">
       </div>
       <div class="col-right">
-          <input type="text">
-          <button>Invio</button>
+          <input type="text" v-model="userInput">
+          <button @click="$emit('input',userInput)">Invio</button>
       </div>
   </header>
 </template>
@@ -15,6 +15,11 @@
 
 export default {
     name:'Header',
+    data(){
+        return{
+            userInput:"",
+        }
+    }
 }
 </script>
 

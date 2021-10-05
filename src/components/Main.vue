@@ -10,6 +10,7 @@ import Film from './Film.vue';
 
 export default {
     name:'Main',
+    props:['headerInput'],
     components:{
         Film,
     }

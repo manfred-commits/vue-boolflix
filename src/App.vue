@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header/>
-    <Main/>
+    <Header @input="inputTransfer"/>
+    <Main :headerInput="insertedInput"/>
   </div>
 </template>
 
@@ -11,9 +11,20 @@ import Main from './components/Main.vue';
 
 export default {
   name: 'App',
+  
   components: {
     Header,
     Main
+  },
+  data(){
+    return{
+      insertedInput:"",
+    }
+  },
+  methods:{
+    inputTransfer(input){
+      this.insertedInput=input;
+    }
   }
 }
 </script>
