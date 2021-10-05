@@ -26,9 +26,10 @@ export default {
     watch:{
       headerInput:function(){
         axios
-        .get('/user',{
+        .get('https://api.themoviedb.org/3/search/movie',{
           params: {
-          ID: 12345
+          api_key: '5280967b1aa0fc49fbfbde5e43ea83ab',
+          query:'Ritorno'
         }
         })
         .then(function (response) {
