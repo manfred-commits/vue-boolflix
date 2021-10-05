@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Film/>
+    <Film v-for="(film,index) in films" :key="index" :film="film"/>
 
   </main>
 </template>
@@ -14,7 +14,7 @@ export default {
     props:['headerInput'],
     data(){
       return{
-
+        films:[],
       }
     },
     components:{
@@ -29,11 +29,12 @@ export default {
         .get('https://api.themoviedb.org/3/search/movie',{
           params: {
           api_key: '5280967b1aa0fc49fbfbde5e43ea83ab',
-          query:'Ritorno'
+          query:this.headerInput,
         }
         })
-        .then(function (response) {
-        console.log(response);
+        .then((response)=> {
+        console.log(response.data.results);
+        this.films=response.data.results;
         })
       },
     }
