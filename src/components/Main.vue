@@ -77,12 +77,12 @@ main{
 
   .card{
     background-color: grey;
-    width: 30%;
+    width: 20%;
     margin: 5px 5px;
   }
   .films,.tv-series{
     display: flex;
-    width: 80%;
+    width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     overflow-x: hidden;
