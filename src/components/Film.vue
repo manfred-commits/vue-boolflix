@@ -75,7 +75,7 @@ export default {
   img:first-child{
     object-fit: cover;
     object-position: center;
-    height: 400px;
+    height: 100%;
     width: 100%;
   }
   .on-hover{
