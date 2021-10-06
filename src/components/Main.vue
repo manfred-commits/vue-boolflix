@@ -1,6 +1,7 @@
 <template>
   <main>
     <Film v-for="(film,index) in films" :key="index" :film="film"/>
+    <Film v-for="(tvSerie,index) in tvSeries" :key="index+tvSerie" :film="tvSerie"/>
 
   </main>
 </template>
@@ -15,6 +16,7 @@ export default {
     data(){
       return{
         films:[],
+        tvSeries:[]
       }
     },
     components:{
@@ -36,6 +38,18 @@ export default {
         console.log(response.data.results);
         this.films=response.data.results;
         })
+        axios
+        .get('https://api.themoviedb.org/3/search/tv',{
+          params: {
+          api_key: '5280967b1aa0fc49fbfbde5e43ea83ab',
+          query:this.headerInput,
+        }
+        })
+        .then((response)=> {
+        console.log(response.data.results);
+        this.tvSeries=response.data.results;
+        })
+        
       },
     }
 }
