@@ -1,8 +1,16 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import './variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
 body{
     font-family: 'Roboto', sans-serif;
     background-color: $page_background_color;
+}
+
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent; 
 }
