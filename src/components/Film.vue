@@ -4,7 +4,7 @@
     <h4>Titolo:{{film.title}}</h4>
     <h4>Titolo Originale:{{film.original_title}}</h4>
     <div>Lingua Originale:
-      <img :src="'https://www.unknown.nu/flags/images/'+film.original_language+'-100'" alt="">
+      <img onerror="this.src != 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Flag.svg/600px-Flag.svg.png'? this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Flag.svg/600px-Flag.svg.png' : '';" :src="'https://www.unknown.nu/flags/images/'+film.original_language+'-100'" alt="">
     </div>
     <div class="score">Media Punteggio:{{film.vote_average}}</div>
   </section>
