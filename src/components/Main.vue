@@ -1,7 +1,13 @@
 <template>
   <main>
-    <Film v-for="(film,index) in films" :key="index" :film="film"/>
-    <Film v-for="(tvSerie,index) in tvSeries" :key="index+tvSerie" :film="tvSerie"/>
+    <section class="films">
+      <h2>Films</h2>
+      <Film class="card " v-for="(film,index) in films" :key="index" :film="film"/>
+    </section>
+    <section class="tv-series">
+      <h2>Tv-series</h2>
+      <Film class="card " v-for="(tvSerie,index) in tvSeries" :key="index+tvSerie" :film="tvSerie"/>
+    </section>
 
   </main>
 </template>
@@ -57,4 +63,33 @@ export default {
 
 <style lang="scss" scoped>
 
+main{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  align-items: center;
+
+  h2{
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
+
+  .card{
+    background-color: grey;
+    width: 30%;
+    margin: 5px 5px;
+  }
+  .films,.tv-series{
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: hidden;
+
+
+
+  }
+  
+}
 </style>
