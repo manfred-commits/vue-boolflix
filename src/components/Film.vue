@@ -6,7 +6,7 @@
     <div>Lingua Originale:
       <img onerror="this.src != 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Flag.svg/600px-Flag.svg.png'? this.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Flag.svg/600px-Flag.svg.png' : '';" :src="'https://www.unknown.nu/flags/images/'+film.original_language+'-100'" alt="">
     </div>
-    <div class="score">Media Punteggio:{{film.vote_average}}</div>
+    <div class="score">Media Punteggio:{{averageToFive(film.vote_average)}}</div>
   </section>
 </template>
 
@@ -14,6 +14,13 @@
 export default {
     name:'Film',
     props:['film'],
+    methods:{
+      averageToFive(averageScore){
+        console.log(averageScore);
+        console.log(Math.ceil(averageScore));
+        return Math.ceil(averageScore/2);
+      }
+    }
 
 }
 </script>
