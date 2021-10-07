@@ -15,8 +15,8 @@
       <div><strong>Titolo Originale:</strong> {{film.original_title?film.original_title:film.original_name}}</div>
       
       <strong>Genere:</strong>
-      <div v-for="(genre,index) in film.genre_ids" :key="'223'+index+genre">
-        {{getGenre(genre)}}
+      <div class="genres" v-for="(genre,index) in movieGenres" :key="'223'+index+genre">
+        {{genre+','}}
       </div>
 
 
@@ -35,6 +35,8 @@
         <span>Overview:</span>
         {{film.overview}}
       </p>
+
+      <strong>Cast:</strong>
       <div class="actors-names" v-for="(actors,index) in movieCast" :key="actors+index">
         {{actors.name||''}}
       </div>
@@ -53,6 +55,7 @@ export default {
       return{
         stars:['','','','',''],
         movieCast:[],
+        movieGenres:[],
       }
     },
     methods:{
@@ -72,25 +75,32 @@ export default {
           if(this.movieCast.length>5){
             this.movieCast.length=5;
           }
-        })
+        });
       },
-      getGenre(filmGenreId){
-        
-        this.gen.forEach(id=>{
-          // console.log(id);
-          if(id.id==filmGenreId){
-            // console.log(id.name);
-            return id.name;
-          }
-        })
+      getGenre(){
+        let container=[];
+        this.film.genre_ids.forEach(filmAsGen=>{
+          this.gen.forEach(genId=>{
+            // console.log(genId);
+            // console.log(` id of array gen ${genId.id}`);
+            // console.log(` id of film ${filmGenreId}`);
+  
+            if(genId.id==filmAsGen){
+              genId.name;
+              // console.log(` content of the id to return ${containerId}`);
+              container.push(genId.name);
+            }
+          });
+
+        });
+        this.movieGenres=container;
       }
     },
-    watch:{
-      film:function(element){
-        // console.log(element);
-        this.getCredits(element.id);
-      }
-    },
+    created(){
+        this.getCredits(this.film.id);
+        this.getGenre();
+
+    }
 
 }
 </script>
@@ -123,14 +133,16 @@ export default {
     align-content: flex-start;
     overflow: auto;
     position: absolute;
-    background-color: rgba($color: #535353, $alpha: .7);
+    background-color: rgba($color: #696969, $alpha: .9);
     color: white;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 
-    
+    .genres{
+      width: 100%;
+    }
 
     .container-flag{
       display: flex;
