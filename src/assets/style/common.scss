@@ -1,6 +1,8 @@
 @import '~bootstrap/scss/bootstrap.scss';
 @import './variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 html {
     overflow: scroll;
     overflow-x: hidden;
