@@ -13,6 +13,11 @@
       <div ><strong>Titolo:</strong>  {{film.title?film.title:film.name}}</div>
 
       <div><strong>Titolo Originale:</strong> {{film.original_title?film.original_title:film.original_name}}</div>
+      
+      <strong>Genere:</strong>
+      <div v-for="(genre,index) in film.genre_ids" :key="'223'+index+genre">
+        {{getGenre(genre)}}
+      </div>
 
 
       <div class="container-flag"> <strong>Lingua Originale </strong> 
@@ -30,29 +35,62 @@
         <span>Overview:</span>
         {{film.overview}}
       </p>
+      <div class="actors-names" v-for="(actors,index) in movieCast" :key="actors+index">
+        {{actors.name||''}}
+      </div>
     </div>
 
   </section>
 </template>
 
 <script>
-import '@fortawesome/fontawesome-free/js/all.js';
+// import '@fortawesome/fontawesome-free/js/all.js';
+import axios from 'axios'
 export default {
     name:'Film',
-    props:['film'],
+    props:['film','gen'],
     data(){
       return{
         stars:['','','','',''],
+        movieCast:[],
       }
     },
     methods:{
       averageToFive(averageScore){
-        console.log(averageScore);
-        console.log(Math.ceil(averageScore));
+        // console.log(averageScore);
+        // console.log(Math.ceil(averageScore));
         return Math.ceil(averageScore/2);
       },
-      
-    }
+      getCredits(id){
+        axios
+        .get('https://api.themoviedb.org/3/movie/'+id+'/credits?api_key=5280967b1aa0fc49fbfbde5e43ea83ab&language=en-US',{
+          
+        })
+        .then((response)=> {
+          // console.log(response);
+          this.movieCast=response.data.cast;
+          if(this.movieCast.length>5){
+            this.movieCast.length=5;
+          }
+        })
+      },
+      getGenre(filmGenreId){
+        
+        this.gen.forEach(id=>{
+          // console.log(id);
+          if(id.id==filmGenreId){
+            // console.log(id.name);
+            return id.name;
+          }
+        })
+      }
+    },
+    watch:{
+      film:function(element){
+        // console.log(element);
+        this.getCredits(element.id);
+      }
+    },
 
 }
 </script>
@@ -124,6 +162,9 @@ export default {
         font-weight: bold;
       }
       font-size: 16px;
+    }
+    .actors-names{
+      width: 100%;
     }
     .yellow-star{
       color: gold;

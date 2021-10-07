@@ -2,11 +2,11 @@
   <main>
     <section class="films">
       <h2>Films</h2>
-      <Film class="card " v-for="(film,index) in films" :key="index" :film="film"/>
+      <Film class="card " v-for="(film,index) in films" :key="index" :film="film" :gen="genres"/>
     </section>
     <section class="tv-series">
       <h2>Tv-series</h2>
-      <Film class="card " v-for="(tvSerie,index) in tvSeries" :key="index+tvSerie" :film="tvSerie"/>
+      <Film class="card " v-for="(tvSerie,index) in tvSeries" :key="index+tvSerie" :film="tvSerie" :gen="genres"/>
     </section>
 
   </main>
@@ -22,7 +22,8 @@ export default {
     data(){
       return{
         films:[],
-        tvSeries:[]
+        tvSeries:[],
+        genres:[],
       }
     },
     components:{
@@ -31,8 +32,19 @@ export default {
     methods:{
    
     },
+    created(){
+      axios
+        .get('https://api.themoviedb.org/3/genre/movie/list?api_key=5280967b1aa0fc49fbfbde5e43ea83ab&language=en-US',{
+          
+        })
+        .then((response)=> {
+          console.log(response);
+          this.genres=response.data.genres;
+        });
+    },
     watch:{
       headerInput:function(){
+        
         axios
         .get('https://api.themoviedb.org/3/search/movie',{
           params: {
