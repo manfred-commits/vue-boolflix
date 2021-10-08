@@ -5,11 +5,6 @@
     
     <div class="on-hover">
 
-
-
-
-
-
       <div ><strong>Titolo:</strong>  {{film.title?film.title:film.name}}</div>
 
       <div><strong>Titolo Originale:</strong> {{film.original_title?film.original_title:film.original_name}}</div>
@@ -27,7 +22,7 @@
       <div class="score">
         <span>Media Punteggio</span>        
         <span class="star-container">
-          <i class="fas fa-star" v-for="(star,index) in stars" :key="index+star" :class="index<averageToFive(film.vote_average)? 'yellow-star':'grey-star'"></i>
+          <i class="fas fa-star" v-for="(star,index) in 5" :key="index+star" :class="index<averageToFive(film.vote_average)? 'yellow-star':'grey-star'"></i>
           
         </span>
       </div>
@@ -53,7 +48,6 @@ export default {
     props:['film','gen'],
     data(){
       return{
-        stars:['','','','',''],
         movieCast:[],
         movieGenres:[],
       }
@@ -71,14 +65,15 @@ export default {
         })
         .then((response)=> {
           // console.log(response);
-          if(response!=0){
+          
             this.movieCast=response.data.cast;
             if(this.movieCast.length>5){
               this.movieCast.length=5;
             }
-
-          }
-        });
+          
+        })
+        .catch(error => console.log(error));
+        
       },
       getGenre(){
         let container=[];

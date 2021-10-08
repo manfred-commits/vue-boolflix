@@ -71,7 +71,9 @@ export default {
           console.log(response);
           this.genres=response.data.genres;
           this.$emit('select',this.genres);
-        });
+        })
+        .catch(error => console.log(error));
+
     },
     watch:{
       headerInput:function(){
@@ -87,6 +89,9 @@ export default {
         console.log(response.data.results);
         this.films=response.data.results;
         })
+        .catch(error => console.log(error));
+
+
         axios
         .get('https://api.themoviedb.org/3/search/tv',{
           params: {
@@ -98,6 +103,8 @@ export default {
         console.log(response.data.results);
         this.tvSeries=response.data.results;
         })
+        .catch(error => console.log(error));
+
         
       },
     }
