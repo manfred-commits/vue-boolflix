@@ -147,7 +147,7 @@ main{
     justify-content: center;
     align-items: center;
     h2{
-      color:#e50914;
+      // color:#e50914;
     }
   }
   
