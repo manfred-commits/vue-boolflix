@@ -4,12 +4,12 @@
           <img src="https://logodownload.org/wp-content/uploads/2014/10/netflix-logo-1-1.png" alt="">
       </div>
       <div class="col-right">
-          <select v-model="currentGenre" @change="$emit('current',currentGenre)" name="genres" id="genres">
+          <select v-if="counter!=0" v-model="currentGenre" @change="$emit('current',currentGenre)" name="genres" id="genres">
               <option value="">Inserisci una genere</option>
               <option v-for="(genre,index) in genres" :key="genre+index+'2'" :value="genre.id">{{genre.name}}</option>
 
           </select>
-          <input placeholder="Inserisci un film/una serie tv" type="text" v-model="userInput" @keyup.enter="$emit('input',userInput)">
+          <input placeholder="Inserisci un film/una serie tv" type="text" v-model="userInput" @keyup.enter="$emit('input',userInput)&& counter++ ">
       </div>
   </header>
 </template>
@@ -23,7 +23,8 @@ export default {
     data(){
         return{
             userInput:"",
-            currentGenre:""
+            currentGenre:"",
+            counter:""
         }
     }
 }

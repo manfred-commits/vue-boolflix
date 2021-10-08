@@ -1,10 +1,13 @@
 <template>
   <main>
-    <section class="films">
+    <section v-if="headerInput!=''" class="films">
       <h2>Films</h2>
       <Film class="card " v-for="(film,index) in filmFilter" :key="index" :film="film" :gen="genres"/>
     </section>
-    <section class="tv-series">
+    <section class="start" v-else>
+      <h2>INSERT A FILM OR A TV SERIES IN THE SEARCH BAR </h2>
+    </section>
+    <section v-if="headerInput!=''" class="tv-series">
       <h2>Tv-series</h2>
       <Film class="card " v-for="(tvSerie,index) in tvSeriesFilter" :key="index+tvSerie" :film="tvSerie" :gen="genres"/>
     </section>
@@ -14,7 +17,8 @@
 
 <script>
 import Film from './Film.vue';
-import axios from 'axios'
+import axios from 'axios';
+
 
 export default {
     name:'Main',
@@ -136,9 +140,15 @@ main{
     flex-wrap: wrap;
     justify-content: center;
     overflow-x: hidden;
-
-
-
+  }
+  .start{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2{
+      color:#e50914;
+    }
   }
   
 }

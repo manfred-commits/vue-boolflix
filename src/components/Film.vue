@@ -41,7 +41,7 @@
 </template>
 
 <script>
-// import '@fortawesome/fontawesome-free/js/all.js';
+import '@fortawesome/fontawesome-free/js/all.js';
 import axios from 'axios'
 export default {
     name:'Film',
