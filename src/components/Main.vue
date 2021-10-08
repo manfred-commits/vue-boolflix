@@ -2,11 +2,11 @@
   <main>
     <section class="films">
       <h2>Films</h2>
-      <Film class="card " v-for="(film,index) in films" :key="index" :film="film" :gen="genres"/>
+      <Film class="card " v-for="(film,index) in filmFilter" :key="index" :film="film" :gen="genres"/>
     </section>
     <section class="tv-series">
       <h2>Tv-series</h2>
-      <Film class="card " v-for="(tvSerie,index) in tvSeries" :key="index+tvSerie" :film="tvSerie" :gen="genres"/>
+      <Film class="card " v-for="(tvSerie,index) in tvSeriesFilter" :key="index+tvSerie" :film="tvSerie" :gen="genres"/>
     </section>
 
   </main>
@@ -18,7 +18,7 @@ import axios from 'axios'
 
 export default {
     name:'Main',
-    props:['headerInput'],
+    props:['headerInput','selection'],
     data(){
       return{
         films:[],
@@ -32,6 +32,36 @@ export default {
     methods:{
    
     },
+    computed:{
+      filmFilter(){
+        const filmFiltered = this.films.filter(
+          (element)=>{
+            
+            if(this.selection!=""){
+              return element.genre_ids.includes(this.selection);
+            }
+            return true;
+           
+          }
+        );
+      
+      return filmFiltered;
+      },
+      tvSeriesFilter(){
+        const tvFiltered = this.tvSeries.filter(
+          (element)=>{
+            
+            if(this.selection!=""){
+              return element.genre_ids.includes(this.selection);
+            }
+            return true;
+          }
+        );
+      
+      return tvFiltered;
+      },
+      
+    },
     created(){
       axios
         .get('https://api.themoviedb.org/3/genre/movie/list?api_key=5280967b1aa0fc49fbfbde5e43ea83ab&language=en-US',{
@@ -40,6 +70,7 @@ export default {
         .then((response)=> {
           console.log(response);
           this.genres=response.data.genres;
+          this.$emit('select',this.genres);
         });
     },
     watch:{

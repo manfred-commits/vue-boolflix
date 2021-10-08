@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @input="inputTransfer"/>
-    <Main :headerInput="insertedInput"/>
+    <Header @input="inputTransfer" :genres="transferedGen" @current="getCurrentSelect"/>
+    <Main :headerInput="insertedInput" @select="getGenres" :selection="selected"/>
   </div>
 </template>
 
@@ -19,11 +19,19 @@ export default {
   data(){
     return{
       insertedInput:"",
+      transferedGen:[],
+      selected:"",
     }
   },
   methods:{
     inputTransfer(input){
       this.insertedInput=input;
+    },
+    getGenres(genresForSelect){
+      this.transferedGen=genresForSelect;
+    },
+    getCurrentSelect(genresSelected){
+      this.selected=genresSelected;
     }
   }
 }

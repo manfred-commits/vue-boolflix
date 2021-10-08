@@ -71,9 +71,12 @@ export default {
         })
         .then((response)=> {
           // console.log(response);
-          this.movieCast=response.data.cast;
-          if(this.movieCast.length>5){
-            this.movieCast.length=5;
+          if(response!=0){
+            this.movieCast=response.data.cast;
+            if(this.movieCast.length>5){
+              this.movieCast.length=5;
+            }
+
           }
         });
       },
@@ -99,7 +102,6 @@ export default {
     created(){
         this.getCredits(this.film.id);
         this.getGenre();
-
     }
 
 }
