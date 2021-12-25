@@ -7,7 +7,7 @@
 
       <div ><strong>Titolo:</strong>  {{film.title?film.title:film.name}}</div>
 
-      <div><strong>Titolo Originale:</strong> {{film.original_title?film.original_title:film.original_name}}</div>
+      <div><strong>Titolo Originale:</strong> {{film.original_title?film.original_title:film.original_name}}</div> <br>
       
       <strong>Genere:</strong>
       <div class="genres" v-for="(genre,index) in movieGenres" :key="'223'+index+genre">

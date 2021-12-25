@@ -1,11 +1,11 @@
 <template>
   <header>
       <div class="col-left">
-          <img src="https://logodownload.org/wp-content/uploads/2014/10/netflix-logo-1-1.png" alt="">
+          <h1>Boolflix</h1>
       </div>
       <div class="col-right">
           <select v-if="counter!=0" v-model="currentGenre" @change="$emit('current',currentGenre)" name="genres" id="genres">
-              <option value="">Inserisci una genere</option>
+              <option value="">Inserisci un genere</option>
               <option v-for="(genre,index) in genres" :key="genre+index+'2'" :value="genre.id">{{genre.name}}</option>
 
           </select>
@@ -36,6 +36,10 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: .625rem 0;
+    background-color: rgb(37, 37, 37);
+    h1{
+        color: red;
+    }
     .col-left{
         margin-left: .625rem;
         img{
